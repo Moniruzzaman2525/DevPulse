@@ -4,7 +4,6 @@ import express, {
   type Response,
 } from "express";
 import config from "./config";
-
 import { initDB } from "./_db";
 
 initDB();
