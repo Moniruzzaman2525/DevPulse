@@ -6,6 +6,9 @@ import express, {
 import config from "./config";
 import { initDB } from "./_db";
 
+
+import globalErrorHandler from "./middlewares/globalErrorHandler";
+
 initDB();
 
 
@@ -25,6 +28,11 @@ app.get("/", (req: Request, res: Response) => {
   });
 });
 
+
+
+
+// Error Handler
+app.use(globalErrorHandler);
 
 
 export default app;
