@@ -4,10 +4,10 @@ import express, {
   type Response,
 } from "express";
 import config from "./config";
-import { initDB } from "./_db";
-
-
 import globalErrorHandler from "./middlewares/globalErrorHandler";
+import { userRouter } from "./modules/auth/auth.routes";
+import { issuesRouter } from "./modules/issues/issues.routes";
+import { initDB } from "./_db";
 
 initDB();
 
@@ -28,11 +28,12 @@ app.get("/", (req: Request, res: Response) => {
   });
 });
 
+app.use("/api/auth", userRouter);
+app.use("/api/issues", issuesRouter);
 
 
 
 // Error Handler
 app.use(globalErrorHandler);
-
 
 export default app;
